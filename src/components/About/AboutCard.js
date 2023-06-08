@@ -8,7 +8,7 @@ function AboutCard() {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p style={{ textAlign: "justify" }}>
-            Hi Everyone, I am <span className="purple">Dhruv Verma</span>from{" "}
+            Hi Everyone, I am <span className="purple">Dhruv Verma</span> from{" "}
             <span className="purple">Haryana, India</span>
             <br /> I am a final uear student pursuiing an BTech in Computer
             Science at{" "}
@@ -29,11 +29,12 @@ function AboutCard() {
           </ul>
           <p style={{ color: "rgb(155 126 172)" }}>
             "Never forgot what you are, cause the rest of the world will not;
-            Use it as your armor, and it will never hurt you. -Tyrion Lannister
-            [A GAME OF THRONES]"
+            Use it as your armor, and it will never hurt you.
           </p>
 
-          <footer className="blockquote-footer">Dhruv Verma</footer>
+          <footer className="blockquote-footer">
+            -Tyrion Lannister [A GAME OF THRONES]"
+          </footer>
         </blockquote>
       </Card.Body>
     </Card>

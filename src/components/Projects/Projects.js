@@ -2,7 +2,9 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCard";
 import editor from "../../Assets/Projects/codeEditor.png";
-import itsablog from "../../Assets/Projects/blog.png";
+
+import tictactoe from "../../Assets/Projects/tictactoe.png";
+import todolist from "../../Assets/Projects/todolist.png";
 import Particle from "../Particle";
 
 function Projects() {
@@ -21,12 +23,15 @@ function Projects() {
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={itsablog}
+              imgPath={todolist}
               isBlog={false}
-              title="Bits-0f-C0de"
-              description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-              ghLink="https://github.com/soumyajit4419/Bits-0f-C0de"
-              demoLink="https://blogs.soumya-jit.tech/"
+              title="To Do List"
+              description="Todo list app project using react hooks Here is the screenshot of the project.Functionalities:
+              1. Add Todo by clicking add button
+              2. Add Todo by pressing Enter key
+              3. Delete Todo"
+              ghLink="https://github.com/Dhruvermafz/CodeClause-TodoList"
+              demoLink="https://ethereal-hall.surge.sh/"
             />
           </Col>
 
@@ -34,10 +39,21 @@ function Projects() {
             <ProjectCard
               imgPath={editor}
               isBlog={false}
-              title="Editor.io"
-              description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"
+              title="Netflix - Landing Page"
+              description="A landing page for Netflix, cloned with ReactJs."
+              ghLink="https://github.com/Dhruvermafz/netfilx-clone"
+              demoLink="https://combative-beetle.surge.sh/"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={tictactoe}
+              isBlog={false}
+              title="Tic Tac Toe"
+              description="The Tic Tac Toe game made with ReactJS offers a visually appealing and user-friendly interface that allows players to immerse themselves in the fun and strategic gameplay. The game board is displayed on the screen, consisting of a 3x3 grid, with each cell representing a spot where the players can make their moves."
+              ghLink="https://github.com/Dhruvermafz/tic-tac-toe"
+              demoLink="https://serious-basket.surge.sh/"
             />
           </Col>
         </Row>

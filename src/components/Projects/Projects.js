@@ -6,7 +6,7 @@ import editor from "../../Assets/Projects/codeEditor.png";
 import tictactoe from "../../Assets/Projects/tictactoe.png";
 import todolist from "../../Assets/Projects/todolist.png";
 import Particle from "../Particle";
-
+import resumeBuilder from "../../Assets/Projects/resume.png";
 function Projects() {
   return (
     <Container fluid className="project-section">
@@ -54,6 +54,18 @@ function Projects() {
               description="The Tic Tac Toe game made with ReactJS offers a visually appealing and user-friendly interface that allows players to immerse themselves in the fun and strategic gameplay. The game board is displayed on the screen, consisting of a 3x3 grid, with each cell representing a spot where the players can make their moves."
               ghLink="https://github.com/Dhruvermafz/tic-tac-toe"
               demoLink="https://serious-basket.surge.sh/"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={resumeBuilder}
+              isBlog={false}
+              title="Resume Builder"
+              description="Resume Builder build using React for Frontend and Express as Middleware.
+              Material UI and React-Bootstrap for styling."
+              ghLink="https://github.com/Dhruvermafz/CodeAlpha-ResumeBuilder"
+              demoLink="https://resumebuilder-v1.onrender.com/"
             />
           </Col>
         </Row>

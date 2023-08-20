@@ -10,7 +10,7 @@ function AboutCard() {
           <p style={{ textAlign: "justify" }}>
             Hi Everyone, I am <span className="purple">Dhruv Verma</span> from{" "}
             <span className="purple">Haryana, India</span>
-            <br /> I am a final uear student pursuiing an BTech in Computer
+            <br /> I am a final year student pursuing an BTech in Computer
             Science at{" "}
             <span className="purple">
               Technological Institute of Textile & Sciences, Bhiwani

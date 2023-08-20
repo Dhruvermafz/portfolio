@@ -7,6 +7,7 @@ import tictactoe from "../../Assets/Projects/tictactoe.png";
 import todolist from "../../Assets/Projects/todolist.png";
 import Particle from "../Particle";
 import resumeBuilder from "../../Assets/Projects/resume.png";
+import itsablog from "../../Assets/Projects/itsablog.png";
 function Projects() {
   return (
     <Container fluid className="project-section">
@@ -66,6 +67,17 @@ function Projects() {
               Material UI and React-Bootstrap for styling."
               ghLink="https://github.com/Dhruvermafz/CodeAlpha-ResumeBuilder"
               demoLink="https://resumebuilder-v1.onrender.com/"
+            />
+          </Col>
+
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={itsablog}
+              isBlog={true}
+              title="ItsABlog"
+              description="ItsABlog is a multi-user blogging website for readers who has a say but noone to listen. I want to build a community of readers to spread love for their reading."
+              ghLink="https://github.com/Dhruvermafz/social-app"
+              demoLink="https://itsablog.vercel.app"
             />
           </Col>
         </Row>

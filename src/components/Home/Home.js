@@ -16,7 +16,7 @@ function Home() {
         <Row>
           <Col md={8} className="home-about-description">
             <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="purple"> INTRODUCE </span> MYSELF
+              Let Me <span className="purple"> Introduce </span> Myself
             </h1>
             <p className="home-about-body">
               I fell in love with programming and I have learnt something to
@@ -24,7 +24,7 @@ function Home() {
               <br />
               <br />I am fluent in classics like
               <i>
-                <b className="purple"> C++, Javascript and Java. </b>
+                <b className="purple"> C++, Javascript & Java. </b>
               </i>
               <br />
               <br />
@@ -35,7 +35,7 @@ function Home() {
               <br />
               <br />
               Whenever possible, I also apply my passion for developing products
-              with <b className="purple">Node.js</b> and Ruby on Rails.
+              with <b className="purple">Node.js</b> and Ruby on Java.
               <i>
                 <b className="purple">
                   {" "}
@@ -56,7 +56,7 @@ function Home() {
         </Row>
         <Row>
           <Col md={12} className="home-about-social">
-            <h1>FIND ME ON</h1>
+            <h1>Find Me On</h1>
             <p>
               Feel free to <span className="purple">connect </span>with me
             </p>

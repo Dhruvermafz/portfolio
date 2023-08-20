@@ -73,7 +73,7 @@ function Projects() {
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={itsablog}
-              isBlog={true}
+              isBlog={false}
               title="ItsABlog"
               description="ItsABlog is a multi-user blogging website for readers who has a say but noone to listen. I want to build a community of readers to spread love for their reading."
               ghLink="https://github.com/Dhruvermafz/social-app"

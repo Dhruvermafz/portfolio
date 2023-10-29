@@ -8,6 +8,8 @@ import todolist from "../../Assets/Projects/todolist.png";
 import Particle from "../Particle";
 import resumeBuilder from "../../Assets/Projects/resume.png";
 import itsablog from "../../Assets/Projects/itsablog.png";
+import liveAuctions from "../../Assets/Projects/live-auctions.jpg";
+
 function Projects() {
   return (
     <Container fluid className="project-section">
@@ -22,6 +24,20 @@ function Projects() {
         </p>
 
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+          <Col md={4} className="project-card">
+            <ProjectCard
+              imgPath={liveAuctions}
+              isBlog={false}
+              title="Live Auctions"
+              description="Todo list app project using react hooks Here is the screenshot of the project.Functionalities:
+              1. Add Todo by clicking add button
+              2. Add Todo by pressing Enter key
+              3. Delete Todo"
+              ghLink="https://github.com/Dhruvermafz/auctions-client"
+              demoLink="https://live-auctions.vercel.app/"
+            />
+          </Col>
+
           <Col md={4} className="project-card">
             <ProjectCard
               imgPath={todolist}

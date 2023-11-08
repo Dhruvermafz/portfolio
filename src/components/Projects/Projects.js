@@ -29,10 +29,7 @@ function Projects() {
               imgPath={liveAuctions}
               isBlog={false}
               title="Live Auctions"
-              description="Todo list app project using react hooks Here is the screenshot of the project.Functionalities:
-              1. Add Todo by clicking add button
-              2. Add Todo by pressing Enter key
-              3. Delete Todo"
+              description="Live Auctions is a website where products can be purchased and sold via live auctions. Sellers can upload product images along with information and set up auctions with customizable settings. Potential buyers can find advertisements and place bids on them. The auction pages offer live notifications and synchronization features, ensuring that users receive updates without needing to refresh the page. Users also receive notifications when an auction starts or ends."
               ghLink="https://github.com/Dhruvermafz/auctions-client"
               demoLink="https://live-auctions.vercel.app/"
             />

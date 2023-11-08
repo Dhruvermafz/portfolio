@@ -35,7 +35,7 @@ function Home() {
               <br />
               <br />
               Whenever possible, I also apply my passion for developing products
-              with <b className="purple">Node.js</b> and Ruby on Java.
+              with <b className="purple">Node.js</b> and C#.
               <i>
                 <b className="purple">
                   {" "}

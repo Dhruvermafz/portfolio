@@ -2,7 +2,6 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCard";
 import editor from "../../Assets/Projects/codeEditor.png";
-
 import tictactoe from "../../Assets/Projects/tictactoe.png";
 import todolist from "../../Assets/Projects/todolist.png";
 import Particle from "../Particle";
@@ -29,7 +28,7 @@ function Projects() {
               imgPath={liveAuctions}
               isBlog={false}
               title="Live Auctions"
-              description="Live Auctions is a website where products can be purchased and sold via live auctions. Sellers can upload product images along with information and set up auctions with customizable settings. Potential buyers can find advertisements and place bids on them. The auction pages offer live notifications and synchronization features, ensuring that users receive updates without needing to refresh the page. Users also receive notifications when an auction starts or ends."
+              description="Live Auctions is a website where products can be purchased and sold via live auctions. Sellers can upload product images along with information and set up auctions with customizable settings. Potential buyers can find advertisements and place bids on them."
               ghLink="https://github.com/Dhruvermafz/auctions-client"
               demoLink="https://live-auctions.vercel.app/"
             />

@@ -10,10 +10,10 @@ function AboutCard() {
           <p style={{ textAlign: "justify" }}>
             Hi Everyone, I am <span className="purple">Dhruv Verma</span> from{" "}
             <span className="purple">Haryana, India</span>
-            <br /> I am a final year student pursuing an BTech in Computer
-            Science at{" "}
+            <br /> I am a final year student pursuing BTech in Computer Science
+            at{" "}
             <span className="purple">
-              Technological Institute of Textile & Sciences, Bhiwani
+              The Technological Institute of Textile & Sciences, Bhiwani
             </span>
             <br />
             Apart from coding, some other activities that I love to do!
@@ -29,7 +29,7 @@ function AboutCard() {
           </ul>
           <p style={{ color: "rgb(155 126 172)" }}>
             "Never forgot what you are, cause the rest of the world will not;
-            Use it as your armor, and it will never hurt you.
+            Wear it like an armor, and it will never be used to hurt you.
           </p>
 
           <footer className="blockquote-footer">

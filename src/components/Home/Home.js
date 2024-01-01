@@ -54,6 +54,7 @@ function Home() {
             </Tilt>
           </Col>
         </Row>
+
         <Row>
           <Col md={12} className="home-about-social">
             <h1>Find Me On</h1>

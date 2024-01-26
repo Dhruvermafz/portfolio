@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/me.jpg";
 import Tilt from "react-parallax-tilt";
+import CallToAction from "../CallToAction";
 import {
   AiFillGithub,
   AiOutlineTwitter,
@@ -53,6 +54,10 @@ function Home() {
               <img src={myImg} className="img-fluid" alt="avatar" />
             </Tilt>
           </Col>
+        </Row>
+
+        <Row>
+          <CallToAction />
         </Row>
 
         <Row>

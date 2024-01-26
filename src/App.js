@@ -13,11 +13,15 @@ import {
   Navigate,
 } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
-import "./style.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./styles/style.css";
 import ErrorBoundary from "./components/Error/ErrorBoundary";
-
+import BlogPage from "./components/Blogs/BlogPage";
+import AdminWrapper from "./admin/adminWrapper";
+import AdminLogin from "./admin/Auth/AdminLogin";
+import Error404 from "./components/Error/404";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import NewPortfolio from "./components/Projects/NewPortfolio";
 function App() {
   const [load, updateLoad] = useState(true);
 
@@ -41,7 +45,15 @@ function App() {
               <Route path="/project" element={<Projects />} />
               <Route path="/about" element={<About />} />
               <Route path="/resume" element={<Resume />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="*" element={<ErrorBoundary />} />
+              <Route path="/admin" element={<AdminWrapper />} />
+              <Route path="/login" element={<AdminLogin />} />
+              <Route path="/blogs" element={<BlogPage />} />
+              <Route path="/404" element={<Error404 />} />
+              <Route
+                path="/admin/projects/add-edit"
+                element={<NewPortfolio />}
+              />
             </Routes>
             <Footer />
           </div>

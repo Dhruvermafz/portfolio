@@ -1,41 +1,60 @@
-import React, { useState, useEffect } from "react";
-import BlogCards from "./BlogCard";
-import { getPosts, POST_TYPES } from "../../services/posts";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Container, Row, Spinner } from "react-bootstrap";
+import BlogCard from "./BlogCard";
 
+import Particle from "../Particle";
+import blogs from "./blogs.json";
 const BlogPage = () => {
-  const token = useSelector((state) => state.auth.token);
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  // const dispatch = useDispatch();
+  // const blogs = useSelector((state) => state.blogs.blogs);
+  const loading = useSelector((state) => state.blogs.loading);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      const query = ""; // Add any query parameters if needed
-      const data = await getPosts(token, query);
-      if (data.type === POST_TYPES.GET_POSTS) {
-        setPosts(data.posts);
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, [token]);
+  // useEffect(() => {
+  //   dispatch(fetchBlogs());
+  // }, [dispatch]);
 
   return (
-    <div>
-      {loading && <p>Loading...</p>}
-      {posts.map((post) => (
-        <BlogCards
-          key={post._id}
-          postImg={post.imageUrl} // Replace with the actual field from your API
-          title={post.title}
-          postDesc={post.description}
-          postLink={`/post/${post._id}`} // Adjust the link based on your routing
-          isPost={true}
-        />
-      ))}
-    </div>
+    <Container fluid className="project-section">
+      <Particle />
+      <Container>
+        <h1 className="project-heading">
+          My Recent <strong className="purple">Blogs</strong>
+        </h1>
+
+        {/* Major Projects */}
+        {/* <h1 className="project-heading">
+          Here are some of my recent blogs on{" "}
+          <a
+            href="https://itsablog.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="purple"
+          >
+            <strong>ItsABlog</strong>
+          </a>
+        </h1> */}
+
+        <Row>
+          {loading ? (
+            <Spinner animation="border" role="status" className="mx-auto">
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          ) : (
+            blogs.map((blog) => (
+              <BlogCard
+                key={blog._id}
+                postImg={blog.imageUrl}
+                title={blog.title}
+                postDesc={blog.description}
+                postLink={`/blogs/${blog._id}`}
+                isPost={true}
+              />
+            ))
+          )}
+        </Row>
+      </Container>
+    </Container>
   );
 };
 

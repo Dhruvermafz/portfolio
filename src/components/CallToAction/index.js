@@ -11,7 +11,7 @@ const CallToAction = () => {
       <Link to="/about">
         <h1 data-aos="zoom-in">
           <i className="fas fa-long-arrow-alt-right"></i>
-          Let's work together
+          <b className="purple">Let's work together</b>
           <i className="fas fa-long-arrow-alt-left"></i>
         </h1>
       </Link>

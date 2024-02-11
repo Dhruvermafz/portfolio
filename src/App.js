@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Preloader from "./components/Pre";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home/HomeBase";
@@ -21,9 +21,29 @@ import AdminLogin from "./admin/Auth/AdminLogin";
 import Error404 from "./components/Error/404";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NewPortfolio from "./components/Projects/NewPortfolio";
+import NewPortfolio from "./admin/projects/NewPortfolio";
+import BlogWrapper from "./admin/blogWrapper";
+import CreatePost from "./admin/add-new-post/AddNewPost";
+
+import TeamMaster from "./admin/team-access/TeamMaster";
+import PortfolioWrapper from "./admin/portfolioWrapper";
+import AdminSignUp from "./admin/Auth/AdminSignup";
+import CertificateWrapper from "./admin/certificateWrapper";
+// Import the PrivateRoute component
+
+export const UserContext = createContext([]);
+
 function App() {
   const [load, updateLoad] = useState(true);
+  const [userInfo, setUserInfo] = useState(() => {
+    const saved = localStorage.getItem("name");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("name", JSON.stringify(userInfo));
+  }, [userInfo]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -32,34 +52,41 @@ function App() {
 
     return () => clearTimeout(timer);
   }, []);
+
   return (
-    <>
-      <ErrorBoundary>
-        <Router>
-          <Preloader load={load} />
-          <div className="App" id={load ? "no-scroll" : "scroll"}>
-            <Navbar />
-            <ScrollToTop />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/project" element={<Projects />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/resume" element={<Resume />} />
-              <Route path="*" element={<ErrorBoundary />} />
-              <Route path="/admin" element={<AdminWrapper />} />
-              <Route path="/login" element={<AdminLogin />} />
-              <Route path="/blogs" element={<BlogPage />} />
-              <Route path="/404" element={<Error404 />} />
-              <Route
-                path="/admin/projects/add-edit"
-                element={<NewPortfolio />}
-              />
-            </Routes>
-            <Footer />
-          </div>
-        </Router>
-      </ErrorBoundary>
-    </>
+    <UserContext.Provider value={{ userInfo, setUserInfo }}>
+      <Router>
+        <Preloader load={load} />
+        <div className="App" id={load ? "no-scroll" : "scroll"}>
+          <Navbar />
+          <ScrollToTop />
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/project" element={<Projects />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/blogs" element={<BlogPage />} />
+            <Route path="/404" element={<Error404 />} />
+
+            {/* Admin Routes */}
+            <Route path="/admin/projects/add-edit" element={<NewPortfolio />} />
+            <Route path="/admin/team-access" element={<TeamMaster />} />
+            <Route path="/admin/projects" element={<PortfolioWrapper />} />
+            <Route path="/admin/blogs" element={<BlogWrapper />} />
+            <Route
+              path="/admin/certificates"
+              element={<CertificateWrapper />}
+            />
+            <Route path="/admin/blogs/add-edit" element={<CreatePost />} />
+            <Route path="/admin" element={<AdminWrapper />} />
+            <Route path="/login" element={<AdminLogin />} />
+            <Route path="/signup" element={<AdminSignUp />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

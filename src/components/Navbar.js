@@ -1,7 +1,14 @@
-import React, { useState } from "react";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Button,
+  Offcanvas,
+  NavDropdown,
+} from "react-bootstrap";
 import logo from "../Assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { CgGitFork, CgFileDocument } from "react-icons/cg";
 import { ImBlog } from "react-icons/im";
 import {
@@ -10,11 +17,45 @@ import {
   AiOutlineFundProjectionScreen,
   AiOutlineUser,
 } from "react-icons/ai";
-
+import { UserContext } from "../UserContext";
+import { API_BASE_URL } from "../config";
 function NavBar() {
   const [expand, updateExpanded] = useState(false);
   const [navColour, updateNavbar] = useState(false);
+  const { setUserInfo } = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
 
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/api/auth/:userId`, {
+      credentials: "include",
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          response
+            .json()
+            .then((userDetails) => {
+              setUserInfo(userDetails);
+            })
+            .catch((err) =>
+              console.log("Header UseEffect userDetailsJSON Error" + err)
+            );
+        } else {
+          console.log("token Expired");
+        }
+      })
+      .catch((err) => console.log("JWT Verify Header", err));
+  }, [setUserInfo]);
+
+  function logout() {
+    fetch(`${API_BASE_URL}/api/auth/signout`, {
+      credentials: "include",
+      method: "POST",
+    });
+    setUserInfo(null);
+    return <Navigate to="/" />;
+  }
+
+  const username = userInfo?.username;
   function scrollHandler() {
     if (window.scrollY >= 20) {
       updateNavbar(true);
@@ -108,6 +149,37 @@ function NavBar() {
                 <CgGitFork style={{ fontSize: "1.2em" }} />{" "}
                 <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
+            </Nav.Item>
+            <Nav.Item>
+              {userInfo && (
+                <>
+                  <Nav.Link as={Link} to={"/"}>
+                    Home
+                  </Nav.Link>
+                  {userInfo.isAdmin && (
+                    <Nav.Link as={Link} to={"/admin"}>
+                      Admin Panel
+                    </Nav.Link>
+                  )}
+                  <Nav.Link as={Link} to={"/create"}>
+                    Create Post
+                  </Nav.Link>
+                  <NavDropdown
+                    align={"end"}
+                    title="Account"
+                    id={`offcanvasNavbarDropdown-expand-sm`}
+                  >
+                    <NavDropdown.Item as={Link} to={"/dashboard"}>
+                      My Dashboard
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item className="text-secondary small" disabled>
+                      Signed in as: {username}
+                    </NavDropdown.Item>
+                    <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                  </NavDropdown>
+                </>
+              )}
             </Nav.Item>
           </Nav>
         </Navbar.Collapse>

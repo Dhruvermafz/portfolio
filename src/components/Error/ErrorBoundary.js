@@ -50,10 +50,7 @@ class ErrorBoundary extends Component {
 
     return (
       <div>
-        <Container fluid className="resume-section">
-          <Particle />
-          {this.props.children}
-        </Container>
+        <Container>{this.props.children}</Container>
       </div>
     );
   }

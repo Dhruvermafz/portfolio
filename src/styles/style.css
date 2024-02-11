@@ -13,7 +13,9 @@ html {
 
   --imp-text-color: #c770f0;
 }
-
+.content{
+display: inline;
+}
 .purple {
   color: var(--imp-text-color) !important;
 }

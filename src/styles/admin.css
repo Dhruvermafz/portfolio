@@ -2,8 +2,44 @@
     color: white !important;
     font-size: 3.3em !important;
     font-weight: 567 !important;
-    padding-top: 19px !important;
+     padding-top: 90px !important; 
+    padding: 0.2rem -13rem;
     display: flow;
-    /* padding: 12px 383px 39px 663px; */
-    padding-left: 43%;
+   
+}
+.admin-wrapper{
+   
+}
+.admin-bars{
+    justify-content: space-around;
+    /* padding-bottom: 62px; */
+    padding: 2rem 1.5rem;
+    display: flex;
+}
+
+.team-master{
+    display: flex;
+
+}
+
+.team-heading{
+    color: white !important;
+    font-size: 3.3em !important;
+    font-weight: 567 !important;
+     padding-top: 90px !important; 
+    padding: 0.2rem -13rem;
+    display: flow;
+}
+.portfolio-search{
+    max-width: max-content;
+    padding-left: 11%;
+    /* padding-bottom: 94%; */
+    padding-top: 8%;
+}
+
+.addPortfolio{
+    max-width: max-content;
+    padding-left: 11%;
+    /* padding-bottom: 94%; */
+    padding-top: 8%;
 }

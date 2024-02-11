@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/portfolio.css";
 import Carousel from "./Carousel";
-import NewPortfolio from "../Projects/NewPortfolio";
+import NewPortfolio from "../../admin/projects/NewPortfolio";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Extras/Footer";
 const PortfolioPage = () => {

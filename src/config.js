@@ -1,8 +1,8 @@
 const isDevelopment = process.env.NODE_ENV === "development";
 
 export const BASE_URL = isDevelopment
-  ? "https://social-api-w6xb.onrender.com/"
-  : "https://social-api-w6xb.onrender.com/";
+  ? "http://localhost:8000"
+  : "http://localhost:8000";
 
 export const API_BASE_URL = "http://localhost:8000";
 export const REACT_APP_COOKIE_IDENTIFIER = "89765";

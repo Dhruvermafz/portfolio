@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { ImPointRight } from "react-icons/im";
-
+import { ImBooks } from "react-icons/im";
+import { SiCinema4D } from "react-icons/si";
 function AboutCard() {
   return (
     <Card className="quote-card-view">
@@ -20,10 +20,10 @@ function AboutCard() {
           </p>
           <ul>
             <li className="about-activity">
-              <ImPointRight /> Watching Movies/Anime
+              <ImBooks /> Watching Movies
             </li>
             <li className="about-activity">
-              <ImPointRight />
+              <SiCinema4D />
               Reading Books
             </li>
           </ul>

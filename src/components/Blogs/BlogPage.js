@@ -5,6 +5,7 @@ import PostCard from "./PostCard";
 import ListLayout from "./ListLayout";
 import Particle from "../Particle";
 import blogs from "./blogs.json";
+import MetaData from "../MetaData";
 
 const BlogPage = () => {
   const [sidebarData, setSidebarData] = useState({
@@ -95,8 +96,14 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="row">
-      <div className="col-md-4 p-3 border-bottom border-gray-500">
+    <Container>
+      <div className="row">
+        <MetaData title="Blogs" />
+        <h1 className="project-heading">
+          <strong className="purple">Feature Under Contstruction</strong>
+        </h1>
+
+        {/* <div className="col-md-4 p-3 border-bottom border-gray-500">
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="searchTerm">
             <Form.Label>Search Term:</Form.Label>
@@ -127,8 +134,8 @@ const BlogPage = () => {
             Apply Filters
           </Button>
         </Form>
-      </div>
-      <div className="col-md-8">
+      </div> */}
+        {/* <div className="col-md-8">
         <h1 className="text-3xl font-semibold border-b border-gray-500 p-3 mt-5">
           Posts results:
         </h1>
@@ -149,8 +156,9 @@ const BlogPage = () => {
             </button>
           )}
         </div>
+      </div> */}
       </div>
-    </div>
+    </Container>
   );
 };
 

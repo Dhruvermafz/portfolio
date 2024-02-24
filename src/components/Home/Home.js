@@ -2,17 +2,20 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import myImg from "../../Assets/me.jpg";
 import Tilt from "react-parallax-tilt";
-import CallToAction from "../CallToAction";
 import {
   AiFillGithub,
   AiOutlineTwitter,
   AiFillInstagram,
 } from "react-icons/ai";
 import { FaLinkedin } from "react-icons/fa";
+import Education from "../Education/Education";
+import MetaData from "../MetaData";
+import Footer from "../Footer";
 
 function Home() {
   return (
     <Container fluid className="home-about-section" id="about">
+      <MetaData title="Home" />
       <Container>
         <Row>
           <Col md={8} className="home-about-description">
@@ -57,7 +60,7 @@ function Home() {
         </Row>
 
         <Row>
-          <CallToAction />
+          <Education />
         </Row>
 
         <Row>
@@ -110,6 +113,8 @@ function Home() {
             </ul>
           </Col>
         </Row>
+
+        <Footer />
       </Container>
     </Container>
   );

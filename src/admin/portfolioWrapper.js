@@ -9,6 +9,7 @@ import {
   Form,
   Modal,
 } from "react-bootstrap";
+import MetaData from "../components/MetaData";
 import { AiOutlineSearch } from "react-icons/ai";
 import "../styles/button.css";
 import { Link } from "react-router-dom";
@@ -66,7 +67,7 @@ const PortfolioWrapper = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:8000/api/project/new",
+        "https://api-portfolio-shuz.onrender.com/api/project/add",
         formDataToSend
       );
 
@@ -81,6 +82,7 @@ const PortfolioWrapper = () => {
 
   return (
     <div className="portfolio-wrapper">
+      <MetaData title="Portfolios" />
       <Container className="mt-5">
         <Row>
           <Col sm={4} className="portfolio-search">

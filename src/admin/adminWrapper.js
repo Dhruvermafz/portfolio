@@ -15,7 +15,7 @@ import Particle from "../components/Particle";
 import { AiOutlineTeam } from "react-icons/ai";
 import { CgMail } from "react-icons/cg";
 import TagsInput from "../components/Tags";
-
+import MetaData from "../components/MetaData";
 const AdminWrapper = () => {
   const location = useLocation();
   const [tab, setTab] = useState("");
@@ -53,6 +53,7 @@ const AdminWrapper = () => {
 
   return (
     <div className="admin-wrapper">
+      <MetaData title="Admin" />
       <Particle />
       <h1 className="admin-header">
         <strong className="purple">Welcome Boss</strong>

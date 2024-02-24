@@ -4,7 +4,7 @@ import { CgAdd } from 'react-icons/cg'
 import "../../styles/admin.css"
 import AddUser from './forms/AddUser'
 import EditUser from './forms/EditUser'
-
+import MetaData from '../../components/MetaData'
 import UserTable from './UserTable'
 const TeamMaster = () => {
   const usersData = [
@@ -45,6 +45,7 @@ const TeamMaster = () => {
 
   return (
     <Container className="mt-5">
+		 <MetaData title="Team" />
         <div className="team-heading">
         
         <strong className="purple">Team</strong>

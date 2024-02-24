@@ -1,0 +1,72 @@
+/* General Styles */
+.project-heading {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .purple {
+    color: purple;
+    
+  }
+  
+  /* Date Style */
+  .date {
+    color: #666;
+  }
+  
+  /* Title Style */
+  .vertical-timeline-element-title a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .vertical-timeline-element-title a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Subtitle Style */
+  .vertical-timeline-element-subtitle {
+    color: #555;
+  }
+  
+  /* Description Style */
+  #description {
+    margin: 10px 0 20px;
+    color: #777;
+  }
+  
+  /* CGPA or Percentage Style */
+  .cgpa-percentage {
+    font-weight: bold;
+    color: #444;
+  }
+  
+  /* Button Style */
+  .button {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Work Button Style */
+  .workButton {
+    background-color: #06d6a0;
+  }
+  
+  .workButton:hover {
+    background-color: #0ac593;
+  }
+  
+  /* School Button Style */
+  .schoolButton {
+    background-color: #f9c74f;
+  }
+  
+  .schoolButton:hover {
+    background-color: #f3bc3c;
+  }
+  

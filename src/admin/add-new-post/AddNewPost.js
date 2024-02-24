@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button, Form, Container, Row, Col, Card } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Container,
+  Row,
+  Col,
+  Card,
+  Alert,
+} from "react-bootstrap";
+import MetaData from "../../components/MetaData";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import {
@@ -13,6 +22,7 @@ import { app } from "../../firebase";
 import Pre from "../../components/Pre";
 
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../config";
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -63,7 +73,7 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("/api/post/create", {
+      const res = await fetch(`${API_BASE_URL}/api/post/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +88,7 @@ export default function CreatePost() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/post/${data.slug}`);
+        navigate(`/blog/${data.slug}`);
       }
     } catch (error) {
       setPublishError("Something went wrong");
@@ -87,85 +97,80 @@ export default function CreatePost() {
 
   return (
     <Container className="portfolio-new">
+      <MetaData title="Add New Blog" />
       <Row>
         <Col lg={8}>
           <Card className="container">
             <div className="card-header">
-              <Form.Label>
-                <h2>New Blog</h2>
-              </Form.Label>
+              <h2>New Blog</h2>
             </div>
 
             <div className="tab-content p-4 sm:p-5">
-              <div className="space-y-5">
-                <Form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                  <div className="flex flex-col gap-4 sm:flex-row justify-between">
-                    <Form.Control
-                      type="text"
-                      placeholder="Title"
-                      required
-                      id="title"
-                      className="flex-1"
-                      onChange={(e) =>
-                        setFormData({ ...formData, title: e.target.value })
-                      }
-                    />
-                    <Form.Select
-                      onChange={(e) =>
-                        setFormData({ ...formData, category: e.target.value })
-                      }
-                    >
-                      <option value="uncategorized">Select a category</option>
-                      <option value="javascript">JavaScript</option>
-                      <option value="reactjs">React.js</option>
-                      <option value="nextjs">Next.js</option>
-                    </Form.Select>
-                  </div>
-                  <div className="flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3">
-                    <Form.Control
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => setFile(e.target.files[0])}
-                    />
-                    <Button
-                      type="button"
-                      onClick={handleUploadImage}
-                      disabled={imageUploadProgress}
-                    >
-                      {imageUploadProgress ? (
-                        <div className="w-16 h-16">
-                          <Pre />
-                        </div>
-                      ) : (
-                        "Upload Image"
-                      )}
-                    </Button>
-                  </div>
-
-                  {formData.image && (
-                    <img
-                      src={formData.image}
-                      alt="upload"
-                      className="w-full h-72 object-cover"
-                    />
-                  )}
-                  <ReactQuill
-                    theme="snow"
-                    placeholder="Write something..."
-                    className="h-72 mb-12"
-                    required
-                    onChange={(value) =>
-                      setFormData({ ...formData, content: value })
-                    }
+              <Form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+                <Form.Control
+                  type="text"
+                  placeholder="Title"
+                  required
+                  id="title"
+                  className="flex-1"
+                  onChange={(e) =>
+                    setFormData({ ...formData, title: e.target.value })
+                  }
+                />
+                <Form.Select
+                  onChange={(e) =>
+                    setFormData({ ...formData, category: e.target.value })
+                  }
+                >
+                  <option value="uncategorized">Select a category</option>
+                  <option value="javascript">JavaScript</option>
+                  <option value="reactjs">React.js</option>
+                  <option value="nextjs">Next.js</option>
+                </Form.Select>
+                <div className="d-flex gap-4 align-items-center justify-between border-4 border-teal-500 border-dotted p-3">
+                  <Form.Control
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setFile(e.target.files[0])}
                   />
-                  <Button type="submit">Publish</Button>
-                  {/* {publishError && (
-          <Alert variant="danger" className="mt-5">
-            {publishError}
-          </Alert>
-        )} */}
-                </Form>
-              </div>
+                  <Button
+                    type="button"
+                    onClick={handleUploadImage}
+                    disabled={imageUploadProgress}
+                  >
+                    {imageUploadProgress ? (
+                      <div className="w-16 h-16">
+                        <Pre />
+                      </div>
+                    ) : (
+                      "Upload Image"
+                    )}
+                  </Button>
+                </div>
+
+                {formData.image && (
+                  <img
+                    src={formData.image}
+                    alt="upload"
+                    className="w-full h-72 object-cover"
+                  />
+                )}
+                <ReactQuill
+                  theme="snow"
+                  placeholder="Write something..."
+                  className="h-72 mb-12"
+                  required
+                  onChange={(value) =>
+                    setFormData({ ...formData, content: value })
+                  }
+                />
+                <Button type="submit">Publish</Button>
+                {publishError && (
+                  <Alert variant="danger" className="mt-5">
+                    {publishError}
+                  </Alert>
+                )}
+              </Form>
             </div>
           </Card>
         </Col>

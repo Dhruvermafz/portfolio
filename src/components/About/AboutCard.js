@@ -20,11 +20,10 @@ function AboutCard() {
           </p>
           <ul>
             <li className="about-activity">
-              <ImBooks /> Watching Movies
+              <ImBooks /> Reading Books
             </li>
             <li className="about-activity">
-              <SiCinema4D />
-              Reading Books
+              <SiCinema4D /> Watching Movies
             </li>
           </ul>
           <p style={{ color: "rgb(155 126 172)" }}>
@@ -33,7 +32,7 @@ function AboutCard() {
           </p>
 
           <footer className="blockquote-footer">
-            -Tyrion Lannister [A GAME OF THRONES]"
+            - Tyrion Lannister [A GAME OF THRONES]"
           </footer>
         </blockquote>
       </Card.Body>

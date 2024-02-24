@@ -4,7 +4,7 @@ import { MdSave, MdPostAdd } from "react-icons/md";
 import { RiEyeLine } from "react-icons/ri";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import MetaData from "../../components/MetaData";
 const NewPortfolio = () => {
   const [formData, setFormData] = useState({
     title: "",
@@ -45,7 +45,7 @@ const NewPortfolio = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:8000/api/project/new",
+        "https://api-portfolio-shuz.onrender.com/api/project/new",
         formDataToSend
       );
 
@@ -59,6 +59,7 @@ const NewPortfolio = () => {
 
   return (
     <Container className="portfolio-new">
+      <MetaData title="New Project" />
       <Row>
         <Col lg={8}>
           <Card className="container">

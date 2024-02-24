@@ -12,6 +12,7 @@ import {
 import Particle from "../components/Particle";
 import { useLocation } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
+import MetaData from "../components/MetaData";
 const CertificateWrapper = () => {
   const location = useLocation();
   const [tab, setTab] = useState("");
@@ -53,6 +54,7 @@ const CertificateWrapper = () => {
 
   return (
     <div className="portfolio-wrapper">
+      <MetaData title="Certfications" />
       <Container className="mt-5">
         <Row>
           <Col sm={4} className="portfolio-search">

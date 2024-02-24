@@ -7,7 +7,7 @@ import {
   Offcanvas,
   NavDropdown,
 } from "react-bootstrap";
-import logo from "../Assets/logo.png";
+import logo from "../Assets/logo@transparent.png";
 import { Link, Navigate } from "react-router-dom";
 import { CgGitFork, CgFileDocument } from "react-icons/cg";
 import { ImBlog } from "react-icons/im";
@@ -161,21 +161,14 @@ function NavBar() {
                       Admin Panel
                     </Nav.Link>
                   )}
-                  <Nav.Link as={Link} to={"/create"}>
-                    Create Post
-                  </Nav.Link>
+
                   <NavDropdown
                     align={"end"}
-                    title="Account"
+                    title={`${username}`}
                     id={`offcanvasNavbarDropdown-expand-sm`}
                   >
-                    <NavDropdown.Item as={Link} to={"/dashboard"}>
-                      My Dashboard
-                    </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item className="text-secondary small" disabled>
-                      Signed in as: {username}
-                    </NavDropdown.Item>
+
                     <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                   </NavDropdown>
                 </>

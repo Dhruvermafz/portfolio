@@ -11,9 +11,11 @@ import {
 } from "react-bootstrap";
 import "../styles/button.css";
 import { Link } from "react-router-dom";
+import MetaData from "../components/MetaData";
 const BlogWrapper = () => {
   return (
     <div className="portfolio-wrapper">
+      <MetaData title="Blogs" />
       <Container className="mt-5">
         <Row>
           <Col sm={4} className="portfolio-search">

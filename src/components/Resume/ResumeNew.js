@@ -7,7 +7,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
 import pdf from "../../Assets/Dhruv's_Resume.pdf";
-
+import MetaData from "../MetaData";
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 function ResumeNew() {
@@ -19,6 +19,7 @@ function ResumeNew() {
 
   return (
     <div>
+      <MetaData title={"Resume"} />
       <Container fluid className="resume-section">
         <Particle />
 

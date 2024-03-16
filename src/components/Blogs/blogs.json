@@ -1,18 +1,15 @@
-
-
 [
-    {
-      "title": "Introduction to React Hooks",
-      "description": "Learn about the basics of React Hooks and how to use them in your projects.",
-      "ghLink": "https://github.com/example/react-hooks-intro",
-      "isBlog": true
-    },
-    {
-      "title": "Building Responsive Web Design with CSS Grid",
-      "description": "Explore how to create responsive web designs using CSS Grid layout.",
-      "ghLink": "https://github.com/example/css-grid-responsive",
-      "demoLink": "https://example.com/demo",
-      "isBlog": true
-    }
-  ]
-  
+  {
+    "title": "Introduction to React Hooks",
+    "description": "Learn about the basics of React Hooks and how to use them in your projects.",
+    "ghLink": "https://github.com/example/react-hooks-intro",
+    "isBlog": true
+  },
+  {
+    "title": "Building Responsive Web Design with CSS Grid",
+    "description": "Explore how to create responsive web designs using CSS Grid layout.",
+    "ghLink": "https://github.com/example/css-grid-responsive",
+    "demoLink": "https://example.com/demo",
+    "isBlog": true
+  }
+]

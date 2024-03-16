@@ -1,5 +1,10 @@
 /* CSS for Draft Editor */
-
+.add-blog{
+    display: block;
+    width: 72rem;
+    flex: 50rem;
+    padding: 5rem;
+}
 @media (max-width: 768px) {
 
     /* For mobile phones: */

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button, Form, Card } from "react-bootstrap";
-import { MdSave, MdPostAdd } from "react-icons/md";
-import { RiEyeLine } from "react-icons/ri";
+import { Modal, Form, Button } from "react-bootstrap";
+import { MdSave } from "react-icons/md";
 import axios from "axios";
-import "bootstrap/dist/css/bootstrap.min.css";
-import MetaData from "../../components/MetaData";
-const NewPortfolio = () => {
+import "../../styles/portfolio.css";
+const NewPortfolio = ({ showModal, setShowModal }) => {
   const [formData, setFormData] = useState({
     title: "",
     caption: "",
@@ -45,11 +43,12 @@ const NewPortfolio = () => {
       }
 
       const response = await axios.post(
-        "https://api-portfolio-shuz.onrender.com/api/project/new",
+        "https://api-portfolio-shuz.onrender.com/api/project/add",
         formDataToSend
       );
 
       console.log("Response:", response.data);
+      setShowModal(false); // Close the modal after successful submission
       // Handle successful submission, e.g., show a success message
     } catch (error) {
       console.error("Error:", error);
@@ -58,103 +57,74 @@ const NewPortfolio = () => {
   };
 
   return (
-    <Container className="portfolio-new">
-      <MetaData title="New Project" />
-      <Row>
-        <Col lg={8}>
-          <Card className="container">
-            <div className="card-header">
-              <Form.Label>
-                <h2>New Project</h2>
-              </Form.Label>
-            </div>
+    <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal.Header closeButton>
+        <Modal.Title>New Project</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              type="text"
+              name="title"
+              value={formData.title}
+              onChange={handleChange}
+              placeholder="Enter post title"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Caption</Form.Label>
+            <Form.Control
+              type="text"
+              name="caption"
+              value={formData.caption}
+              onChange={handleChange}
+              placeholder="Enter portfolio caption in less than 20 words"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>GitHub Link</Form.Label>
+            <Form.Control
+              type="text"
+              name="githubLink"
+              value={formData.githubLink}
+              onChange={handleChange}
+              placeholder="Enter GitHub link"
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Live Link</Form.Label>
+            <Form.Control
+              type="text"
+              name="liveLink"
+              value={formData.liveLink}
+              onChange={handleChange}
+              placeholder="Enter live link"
+            />
+          </Form.Group>
 
-            <div className="tab-content p-4 sm:p-5">
-              <div className="space-y-5">
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group>
-                    <Form.Label className="portfolio-label">Title</Form.Label>
-                    <Form.Control
-                      className="portfolio-title-content"
-                      type="text"
-                      name="title"
-                      value={formData.title}
-                      onChange={handleChange}
-                      placeholder="Enter post title"
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="portfolio-label">Caption</Form.Label>
-                    <Form.Control
-                      className="portfolio-caption-content"
-                      type="text"
-                      name="caption"
-                      value={formData.caption}
-                      onChange={handleChange}
-                      placeholder="Enter portfolio caption in less than 20 words"
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="portfolio-label">
-                      GitHub Link
-                    </Form.Label>
-                    <Form.Control
-                      className="github-link-content"
-                      type="link"
-                      name="githubLink"
-                      value={formData.githubLink}
-                      onChange={handleChange}
-                      placeholder="Enter GitHub link"
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label className="portfolio-label">
-                      Live Link
-                    </Form.Label>
-                    <Form.Control
-                      className="live-link-content"
-                      type="link"
-                      name="liveLink"
-                      value={formData.liveLink}
-                      onChange={handleChange}
-                      placeholder="Enter live link"
-                    />
-                  </Form.Group>
+          <Form.Group controlId="portfolioImage">
+            <Form.Label>Portfolio Images</Form.Label>
+            <Form.Control type="file" multiple onChange={handleFileChange} />
+          </Form.Group>
 
-                  <Form.Group controlId="portfolioImage">
-                    <Form.Label className="portfolio-label">
-                      Portfolio Images
-                    </Form.Label>
-                    <Form.Control
-                      type="file"
-                      multiple
-                      onChange={handleFileChange}
-                    />
-                  </Form.Group>
-
-                  <Form.Group controlId="tags">
-                    <Form.Label className="portfolio-label">Tags</Form.Label>
-                    <Form.Control
-                      className="mt-1.5 w-full"
-                      type="text"
-                      name="tags"
-                      value={formData.tags}
-                      onChange={handleChange}
-                      placeholder="Enter Tags"
-                    />
-                  </Form.Group>
-                  <Form.Group>
-                    <Button type="submit" className="save-button">
-                      <MdSave className="h-5 w-5 mr-2" /> Save
-                    </Button>
-                  </Form.Group>
-                </Form>
-              </div>
-            </div>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+          <Form.Group controlId="tags">
+            <Form.Label>Tags</Form.Label>
+            <Form.Control
+              type="text"
+              name="tags"
+              value={formData.tags}
+              onChange={handleChange}
+              placeholder="Enter Tags"
+            />
+          </Form.Group>
+          <Button type="submit">
+            <MdSave /> Save
+          </Button>
+        </Form>
+      </Modal.Body>
+    </Modal>
   );
 };
 

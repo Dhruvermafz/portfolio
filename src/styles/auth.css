@@ -1,0 +1,108 @@
+/* Reset */
+main {
+    display: block;
+    clear: both;
+  }
+  
+  /* Colors */
+  .color-linear {
+    background: linear-gradient(90deg, rgb(14, 165, 234), rgb(11, 209, 209) 51%, rgb(14, 165, 234)) var(--x, 0)/200%;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    text-fill-color: transparent;
+  }
+  
+  /* Form */
+  .form-login {
+    display: inline-block;
+    max-width: 405px;
+    width: 100%;
+    border-radius: 16px;
+    margin: auto;
+    border: 1px solid #222F43;
+    padding: 30px;
+  }
+  
+  .form-login .btn {
+    width: 100%;
+    height: 48px;
+  }
+  
+  /* Box Form Login */
+  .box-form-login {
+    text-align: center;
+    position: relative;
+  }
+  
+  .box-form-login::before {
+    content: "";
+    height: 312px;
+    width: 329px;
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+  }
+  
+  /* Background and Border */
+  .bg-gray-850 {
+    background-color: #131C31;
+  }
+  
+  .border-gray-800 {
+    border-color: #222F43 !important;
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 24px;
+  }
+  
+  /* Box Line */
+  .box-line {
+    position: relative;
+    margin: 30px auto;
+    max-width: 375px;
+  }
+  
+  .box-line::before {
+    content: "";
+    width: 90%;
+    height: 1px;
+    background-color: #222F43;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    margin: auto;
+  }
+  
+  .box-line span {
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    z-index: 2;
+    padding: 5px 10px;
+  }
+  
+  /* Box Login Gmail */
+  .box-login-gmail {
+    border-radius: 16px;
+    border: 1px solid #222F43;
+    display: inline-block;
+    max-width: 405px;
+    width: 100%;
+    padding: 8px;
+  }
+  
+  .btn-login-gmail {
+    background: url(../Assets/gmail.svg) no-repeat left center;
+    padding-left: 30px;
+  }
+  
+  /* Main Link */
+  .main a.color-gray-500 {
+    color: #66768F !important;
+  }
+  

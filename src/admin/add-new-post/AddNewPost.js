@@ -20,7 +20,7 @@ import {
 
 import { app } from "../../firebase";
 import Pre from "../../components/Pre";
-
+import "../../styles/addblog.css";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../config";
 
@@ -99,7 +99,7 @@ export default function CreatePost() {
     <Container className="portfolio-new">
       <MetaData title="Add New Blog" />
       <Row>
-        <Col lg={8}>
+        <Col lg={8} className="add-blog">
           <Card className="container">
             <div className="card-header">
               <h2>New Blog</h2>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Error from "../../Assets/404.svg";
 import MetaData from "../MetaData";
 import "../../styles/error.css";
+import { Player } from "@lottiefiles/react-lottie-player";
 const Error404 = () => {
   return (
     <main className="main">
@@ -20,6 +21,12 @@ const Error404 = () => {
                       <div className="image-404">
                         <img src={Error} alt="Genz" />
                       </div>
+                      <Player
+                        autoplay
+                        loop
+                        style={{ height: "500px" }}
+                        src="https://assets1.lottiefiles.com/packages/lf20_zxliqmhr.json"
+                      />
                     </Col>
                     <Col lg={6}>
                       <div className="info-404 text-start mt-60">
@@ -31,9 +38,13 @@ const Error404 = () => {
                           the homepage.
                         </p>
                         <div className="mt-25">
-                          <Link to="/" className="btn btn-linear hover-up">
+                          <Link
+                            to="/"
+                            className="btn btn-linear hover-up"
+                            style={{ color: "white" }}
+                          >
                             <BsHouseDoor className="me-2" />
-                            Homepage
+                            Back to Home
                           </Link>
                         </div>
                       </div>

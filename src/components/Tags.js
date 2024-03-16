@@ -1,36 +1,31 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { ListGroup } from "react-bootstrap";
+import { SideBlock } from "./common/SideBlock";
 import "../styles/tags.css";
-const TagsInput = (props) => {
-  const [tags, setTags] = React.useState(props.tags);
-  const removeTags = (indexToRemove) => {
-    setTags([...tags.filter((_, index) => index !== indexToRemove)]);
-  };
-  const addTags = (event) => {
-    if (event.target.value !== "") {
-      setTags([...tags, event.target.value]);
-      props.selectedTags([...tags, event.target.value]);
-      event.target.value = "";
-    }
-  };
+export const Tags = ({ items, isLoading = true }) => {
   return (
-    <div className="tags-input">
-      <ul id="tags">
-        {tags.map((tag, index) => (
-          <li key={index} className="tag">
-            <span className="tag-title">{tag}</span>
-            <span className="tag-close-icon" onClick={() => removeTags(index)}>
-              x
-            </span>
-          </li>
+    <SideBlock title="Тэги">
+      <ListGroup>
+        {(isLoading ? [...Array(5)] : items).map((name, i) => (
+          <Link
+            key={i}
+            style={{ textDecoration: "none", color: "black" }}
+            to={`/tags/${name}`}
+          >
+            <ListGroup.Item action>
+              {/* Icon */}
+              <span style={{ marginRight: "8px" }}>#</span>
+              {/* Name */}
+              {isLoading ? (
+                <div style={{ width: 100 }}>Loading...</div>
+              ) : (
+                <div>{name}</div>
+              )}
+            </ListGroup.Item>
+          </Link>
         ))}
-      </ul>
-      <input
-        type="text"
-        onKeyUp={(event) => (event.key === "Enter" ? addTags(event) : null)}
-        placeholder="Press enter to add tags"
-      />
-    </div>
+      </ListGroup>
+    </SideBlock>
   );
 };
-
-export default TagsInput;

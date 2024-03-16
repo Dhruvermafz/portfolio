@@ -14,13 +14,27 @@ import { API_BASE_URL } from "../config";
 import Particle from "../components/Particle";
 import { AiOutlineTeam } from "react-icons/ai";
 import { CgMail } from "react-icons/cg";
-import TagsInput from "../components/Tags";
+
 import MetaData from "../components/MetaData";
+import Extras from "./extras/Extras";
 const AdminWrapper = () => {
   const location = useLocation();
   const [tab, setTab] = useState("");
   const nameRef = useRef("");
-
+  const resumeRef = useRef("");
+  const [tagName, setTagName] = useState("");
+  const [resumeLink, setResumeLink] = useState("");
+  const greetingMessage = () => {
+    const currentTime = new Date().getHours();
+    if (currentTime < 12) {
+      return "Good Morning";
+    } else if (currentTime < 16) {
+      return "Good Afternoon";
+    } else {
+      return "Good Evening";
+    }
+  };
+  const message = greetingMessage();
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const tabFromUrl = urlParams.get("tab");
@@ -29,22 +43,44 @@ const AdminWrapper = () => {
     }
   }, [location.search]);
 
-  const handleUser = async (e) => {
+  const handleTagSubmit = async (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
-    const newProject = { name };
+    const newUser = { name };
 
     try {
-      const response = await fetch(`${API_BASE_URL}/addSkill`, {
+      const response = await fetch(`${API_BASE_URL}/addUser`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newProject),
+        body: JSON.stringify(newUser),
       });
       const data = await response.json();
 
       if (data.insertedId) {
         alert("User Inserted Successfully");
-        e.target.reset(); // Clear form input
+        nameRef.current.value = ""; // Clear form input
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleResumeSubmit = async (e) => {
+    e.preventDefault();
+    const resumeLink = resumeRef.current.value;
+    const newResume = { resumeLink };
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/addResume`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newResume),
+      });
+      const data = await response.json();
+
+      if (data.insertedId) {
+        alert("Resume Inserted Successfully");
+        resumeRef.current.value = ""; // Clear form input
       }
     } catch (error) {
       console.error("Error:", error);
@@ -56,7 +92,7 @@ const AdminWrapper = () => {
       <MetaData title="Admin" />
       <Particle />
       <h1 className="admin-header">
-        <strong className="purple">Welcome Boss</strong>
+        <strong className="purple">{`${message}`} Boss</strong>
       </h1>
       <Row
         style={{ justifyContent: "center", paddingBottom: "50px" }}
@@ -108,42 +144,40 @@ const AdminWrapper = () => {
         style={{ justifyContent: "center", paddingBottom: "50px" }}
         className="extras-wrapper"
       >
-        <Container>
-          <h1 className="admin-header">
-            <strong className="purple">Extras</strong>
-          </h1>
-          <Row className="mt-5 p-5">
-            <Col md={6}>
-              <div className="mt-5 text-center">
-                <h2> Add New Skill</h2>
-                <div className="d-flex justify-content-center mb-4">
-                  <div className="border-bottom w-25 text-bottom border-info"></div>
-                </div>
-                <Form onSubmit={handleUser}>
-                  <Row className="w-75">
-                    <Col md className="mb-3">
-                      <Form.Group controlId="tagsAdd">
-                        <Form.Control
-                          type="text"
-                          name="name"
-                          placeholder="Skill Name"
-                          ref={nameRef}
-                          required
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col md className="text-center">
-                      <Button type="submit" className="btn btn-primary mt-4">
-                        Send to Db
-                      </Button>
-                    </Col>
-                  </Row>
-                </Form>
-              </div>
-            </Col>
-            <Col md={6}></Col>
-          </Row>
-        </Container>
+        {/* Column for Tags */}
+        <Col xs={12} md={6} className="tags-column">
+          <h3>Add Tags</h3>
+          <Form onSubmit={handleTagSubmit}>
+            <Form.Group controlId="tagName">
+              <Form.Label>Tag Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter tag name"
+                value={tagName}
+                onChange={(e) => setTagName(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button type="submit">Add Tag</Button>
+          </Form>
+        </Col>
+
+        {/* Column for Resume Link */}
+        <Col xs={12} md={6} className="resume-column">
+          <h3>Add Resume</h3>
+          <Form onSubmit={handleResumeSubmit}>
+            <Form.Group controlId="resumeLink">
+              <Form.Label>Resume Link</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter resume link"
+                ref={resumeRef}
+                required
+              />
+            </Form.Group>
+            <Button type="submit">Add Resume</Button>
+          </Form>
+        </Col>
       </Row>
     </div>
   );

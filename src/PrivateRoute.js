@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { Navigate, Route } from "react-router-dom";
-import { UserContext } from "./App";
+import { Route, Navigate } from "react-router-dom";
+import { UserContext } from "./UserContext";
 
-const PrivateRoute = ({ element, ...rest }) => {
+const PrivateRoute = ({ element: Element, ...rest }) => {
   const { userInfo } = useContext(UserContext);
 
-  return userInfo ? (
-    <Route {...rest} element={element} />
-  ) : (
-    <Navigate to="/login" />
+  return (
+    <Route
+      {...rest}
+      element={userInfo ? <Element /> : <Navigate to="/login" />}
+    />
   );
 };
 

@@ -1,0 +1,40 @@
+/* NewPortfolio.css */
+
+.modal-content {
+    background-color: #f8f9fa; /* Set the background color */
+    backdrop-filter: blur(5px); /* Add backdrop filter to blur the background */
+}
+
+.modal-title {
+    color: #343a40; /* Set the title color */
+}
+
+.modal-body {
+    padding: 20px; /* Add padding to the modal body */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Add margin between form groups */
+}
+
+.form-label {
+    font-weight: bold; /* Make form labels bold */
+}
+
+.form-control {
+    border: 1px solid #ced4da; /* Set border color */
+}
+
+.file-input {
+    margin-top: 10px; /* Add margin to file input */
+}
+
+.submit-button {
+    background-color: #007bff; /* Set button background color */
+    border: none; /* Remove button border */
+    color: #fff; /* Set button text color */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Change button background color on hover */
+}

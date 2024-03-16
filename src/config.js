@@ -4,7 +4,7 @@ export const BASE_URL = isDevelopment
   ? "http://localhost:8000"
   : "https://api-portfolio-shuz.onrender.com";
 
-export const API_BASE_URL = "https://api-portfolio-shuz.onrender.com";
+export const API_BASE_URL = "http://localhost:8000";
 export const REACT_APP_COOKIE_IDENTIFIER = "89765";
 export const REACT_APP_ADMIN_IDENTIFICATION_ROLE = "admin";
 

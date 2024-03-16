@@ -150,6 +150,15 @@ function NavBar() {
                 <AiFillStar style={{ fontSize: "1.1em" }} />
               </Button>
             </Nav.Item>
+
+            {userInfo && (
+              <Nav.Item>
+                <Nav.Link as={Link} to={`/${username}`}>
+                  {`${username}`}
+                </Nav.Link>
+              </Nav.Item>
+            )}
+
             <Nav.Item>
               {userInfo && (
                 <>

@@ -29,6 +29,8 @@ import TeamMaster from "./admin/team-access/TeamMaster";
 import PortfolioWrapper from "./admin/portfolioWrapper";
 import AdminSignUp from "./admin/Auth/AdminSignup";
 import CertificateWrapper from "./admin/certificateWrapper";
+import PrivateRoute from "./PrivateRoute";
+import BlogPost from "./components/Blogs/BlogPost";
 // Import the PrivateRoute component
 
 export const UserContext = createContext([]);
@@ -70,6 +72,7 @@ function App() {
             <Route path="/404" element={<Error404 />} />
 
             {/* Admin Routes */}
+
             <Route path="/admin/projects/add-edit" element={<NewPortfolio />} />
             <Route path="/admin/team-access" element={<TeamMaster />} />
             <Route path="/admin/projects" element={<PortfolioWrapper />} />
@@ -82,6 +85,7 @@ function App() {
             <Route path="/admin" element={<AdminWrapper />} />
             <Route path="/login" element={<AdminLogin />} />
             <Route path="/signup" element={<AdminSignUp />} />
+            <Route path="/blogs/1" element={<BlogPost />} />
           </Routes>
           <Footer />
         </div>

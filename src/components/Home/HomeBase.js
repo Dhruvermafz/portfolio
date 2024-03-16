@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import homeLogo from "../../Assets/home-main.svg";
 import Partcile from "../Particle";
 import Home from "./Home";
@@ -22,7 +22,7 @@ function HomeBase() {
 
               <h1 className="heading-name">
                 I'm
-                <strong className="main-name">Dhruv Verma</strong>
+                <strong className="main-name"> Dhruv Verma</strong>
               </h1>
 
               <div style={{ paddingBottom: 50, textAlign: "left" }}>

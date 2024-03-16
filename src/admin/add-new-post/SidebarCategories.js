@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addCategory, removeCategory } from "../../actions/categories";
 import { Row, Col, Form } from "react-bootstrap";
-
 import { Card, ListGroup, Button, InputGroup } from "react-bootstrap";
 
 class SidebarCategories extends React.Component {

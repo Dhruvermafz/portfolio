@@ -1,0 +1,43 @@
+.progressCounter {
+    z-index: 12345;
+    cursor: pointer;
+  }
+  
+  .progressCounter span.progressScroll-text {
+    font-size: 20px;
+    color: #fff;
+  }
+  
+  .hover-up {
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  
+  .hover-up:hover {
+    transform: translateY(-2px);
+    transition: all 0.25s cubic-bezier(0.02, 0.01, 0.47, 1);
+  }
+  
+  /* Additional styles for the progress bar */
+  .scrollProgressCounter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px; /* Adjust height as needed */
+    background-color: #ccc; /* Set the background color of the progress bar */
+  }
+  
+  .scrollProgress {
+    height: 100%;
+    background-color: #007bff; /* Set the color of the progress indicator */
+  }
+  
+  .scrollProgress-text {
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

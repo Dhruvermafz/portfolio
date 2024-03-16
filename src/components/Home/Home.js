@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import myImg from "../../Assets/me.jpg";
 import Tilt from "react-parallax-tilt";
 import {
@@ -11,7 +11,7 @@ import { FaLinkedin } from "react-icons/fa";
 import Education from "../Education/Education";
 import MetaData from "../MetaData";
 import Footer from "../Footer";
-
+import Achievement from "../Achievement/Achievement";
 function Home() {
   return (
     <Container fluid className="home-about-section" id="about">
@@ -23,12 +23,14 @@ function Home() {
               Let Me <span className="purple"> Introduce </span> Myself
             </h1>
             <p className="home-about-body">
-              I fell in love with programming and I have learnt something to
-              brace my Software Development Career.
+              I want to keep it simple here! I studied Computer Science, got
+              intrigued by development side of it. Most of my work involves
+              making inhouse softwares with JavaScript. I don't wanna limit
+              myself to just one framework.
               <br />
-              <br />I am fluent in classics like
+              <br />I worked with different programming languages also:
               <i>
-                <b className="purple"> C++, Javascript & Java. </b>
+                <b className="purple"> C++, Javascript & Python. </b>
               </i>
               <br />
               <br />
@@ -50,8 +52,24 @@ function Home() {
               <i>
                 <b className="purple"> React.js and Next.js</b>
               </i>
+              <h4 className="main-name">My latest plan?</h4>
+              <p>
+                I'm seeking Front-end/FullStack development roles as of now{" "}
+                <mark>{`${new Date().getFullYear()}`}</mark>, but not limited to
+                just Frontend.{" "}
+                <mark className="btn-block" variant="outline-primary">
+                  <a
+                    href="mailto:vermadhruv09112002@gmail.com"
+                    target="_blank"
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    Available for Full-Time positions
+                  </a>
+                </mark>
+              </p>
             </p>
           </Col>
+
           <Col md={4} className="myAvtar">
             <Tilt>
               <img src={myImg} className="img-fluid" alt="avatar" />
@@ -61,6 +79,7 @@ function Home() {
 
         <Row>
           <Education />
+          <Achievement />
         </Row>
 
         <Row>

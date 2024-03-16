@@ -10,6 +10,7 @@ import {
 import { FaLinkedin } from "react-icons/fa";
 import Education from "../Education/Education";
 import MetaData from "../MetaData";
+import Footer from "../Footer";
 function Home() {
   return (
     <Container fluid className="home-about-section" id="about">

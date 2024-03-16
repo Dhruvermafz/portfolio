@@ -8,7 +8,6 @@ import laptopImg from "../../Assets/about.png";
 import Toolstack from "./Toolstack";
 import Experience from "../Experience/Experience";
 import MetaData from "../MetaData";
-import Achievement from "../Achievement/Achievement";
 
 function About() {
   return (

@@ -10,8 +10,6 @@ import {
 import { FaLinkedin } from "react-icons/fa";
 import Education from "../Education/Education";
 import MetaData from "../MetaData";
-import Footer from "../Footer";
-import Achievement from "../Achievement/Achievement";
 function Home() {
   return (
     <Container fluid className="home-about-section" id="about">
@@ -79,7 +77,6 @@ function Home() {
 
         <Row>
           <Education />
-          {/* <Achievement /> */}
         </Row>
 
         <Row>

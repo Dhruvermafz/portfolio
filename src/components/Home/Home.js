@@ -79,7 +79,7 @@ function Home() {
 
         <Row>
           <Education />
-          <Achievement />
+          {/* <Achievement /> */}
         </Row>
 
         <Row>

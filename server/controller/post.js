@@ -9,10 +9,6 @@ const Comment = require("../models/comment");
 
 /**
  * Get a list of posts
- *
- * @param req
- * @param res
- * @param next
  */
 exports.fetchPosts = function (req, res, next) {
   Post.find({})
@@ -34,10 +30,6 @@ exports.fetchPosts = function (req, res, next) {
 
 /**
  * Create a new post
- *
- * @param req
- * @param res
- * @param next
  */
 exports.createPost = function (req, res, next) {
   // Require auth
@@ -361,4 +353,115 @@ exports.fetchCommentsByPostId = function (req, res, next) {
       }
       res.json(comments);
     });
+};
+/**
+ * Like a blog post
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.likePost = function (req, res, next) {
+  // Require auth
+  const user = req.user;
+
+  // Get post ID
+  const postId = req.params.id;
+
+  // Find the post by post ID
+  Post.findById(postId, function (err, post) {
+    if (err) {
+      console.log(err);
+      return res.status(422).json({
+        message: "Error! Could not retrieve the post with the given post ID.",
+      });
+    }
+
+    // Check if the post exist
+    if (!post) {
+      return res.status(404).json({
+        message: "Error! The post with the given ID does not exist.",
+      });
+    }
+
+    // Check if the user has already liked the post
+    if (post.likes.includes(user._id)) {
+      return res.status(422).json({
+        message: "Error! You have already liked this post.",
+      });
+    }
+
+    // Check if the user has already disliked the post
+    if (post.dislikes.includes(user._id)) {
+      // If yes, remove the dislike
+      post.dislikes.pull(user._id);
+    }
+
+    // Add user ID to likes
+    post.likes.push(user._id);
+
+    // Save the post
+    post.save(function (err, post) {
+      if (err) {
+        return next(err);
+      }
+      res.json(post); // return the updated post
+    });
+  });
+};
+
+/**
+ * Dislike a blog post
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+exports.dislikePost = function (req, res, next) {
+  // Require auth
+  const user = req.user;
+
+  // Get post ID
+  const postId = req.params.id;
+
+  // Find the post by post ID
+  Post.findById(postId, function (err, post) {
+    if (err) {
+      console.log(err);
+      return res.status(422).json({
+        message: "Error! Could not retrieve the post with the given post ID.",
+      });
+    }
+
+    // Check if the post exist
+    if (!post) {
+      return res.status(404).json({
+        message: "Error! The post with the given ID does not exist.",
+      });
+    }
+
+    // Check if the user has already disliked the post
+    if (post.dislikes.includes(user._id)) {
+      return res.status(422).json({
+        message: "Error! You have already disliked this post.",
+      });
+    }
+
+    // Check if the user has already liked the post
+    if (post.likes.includes(user._id)) {
+      // If yes, remove the like
+      post.likes.pull(user._id);
+    }
+
+    // Add user ID to dislikes
+    post.dislikes.push(user._id);
+
+    // Save the post
+    post.save(function (err, post) {
+      if (err) {
+        return next(err);
+      }
+      res.json(post); // return the updated post
+    });
+  });
 };

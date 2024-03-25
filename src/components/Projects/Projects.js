@@ -8,7 +8,7 @@ import instadownloader from "../../Assets/Projects/instadownloader.png";
 import todolist from "../../Assets/Projects/todolist.png";
 import editor from "../../Assets/Projects/codeEditor.png";
 import tictactoe from "../../Assets/Projects/tictactoe.png";
-import resumeBuilder from "../../Assets/Projects/resume.png";
+import two from "../../Assets/Projects/2048.png";
 import MetaData from "../MetaData";
 function Projects() {
   // Major Projects
@@ -38,12 +38,13 @@ function Projects() {
       demoLink: "https://insta-videodownloader.vercel.app/",
     },
     {
-      imgPath: resumeBuilder,
-      title: "Resume Builder",
+      imgPath: two,
+      title: "2048",
       description:
-        "Resume Builder build using React for Frontend and Express as Middleware.",
-      ghLink: "https://github.com/Dhruvermafz/CodeAlpha-ResumeBuilder",
-      demoLink: "https://resumebuilder-v1.onrender.com/",
+        "2048 is a fun game for sliding tiles and merging numbers on a 4x4 grid. Using the arrow keys or the W, A, S, D keys alternatively. Every time you press a key, tiles slide in the specified direction. Keep an eye out for tiles with the same value, as they will merge into a new tile. Reaching the goal 2048 tile!",
+      ghLink:
+        "https://github.com/Dhruvermafz/interview-preparation/tree/main/game",
+      demoLink: "https://twoofoureightgame.vercel.app/",
     },
   ];
 

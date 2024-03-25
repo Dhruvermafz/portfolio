@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Define our model
 const commentSchema = new Schema({
-  content: String, // html
+  content: String,
   authorId: String,
   authorName: String,
   postId: String,

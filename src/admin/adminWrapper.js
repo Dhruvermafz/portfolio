@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
+import { API_BASE_URL } from "../config";
+import { checkAuth } from "../Lib/CheckAuth";
 import {
   Col,
   Row,
@@ -10,28 +14,41 @@ import {
 } from "react-bootstrap";
 import { FaBlog, FaPortrait, FaCertificate } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { API_BASE_URL } from "../config";
-import Particle from "../components/Particle";
 import { AiOutlineTeam } from "react-icons/ai";
 import { CgMail } from "react-icons/cg";
 
 import MetaData from "../components/MetaData";
 import Extras from "./extras/Extras";
+import Particle from "../components/Particle";
+import Sidebar from "./Sidebar/Sidebar";
+
 const AdminWrapper = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const [tab, setTab] = useState("");
   const nameRef = useRef("");
   const resumeRef = useRef("");
   const [tagName, setTagName] = useState("");
   const [resumeLink, setResumeLink] = useState("");
+  const [authenticated, setAuthenticated] = useState(true);
+
+  useEffect(() => {
+    const user = checkAuth();
+    if (!user) {
+      setAuthenticated(false);
+    }
+  }, []);
+
   const greetingMessage = () => {
     const currentTime = new Date().getHours();
     if (currentTime < 12) {
       return "Good Morning";
     } else if (currentTime < 16) {
       return "Good Afternoon";
-    } else {
+    } else if (currentTime < 20) {
       return "Good Evening";
+    } else {
+      return "So Jao";
     }
   };
   const message = greetingMessage();
@@ -87,98 +104,105 @@ const AdminWrapper = () => {
     }
   };
 
+  if (!authenticated) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <div className="admin-wrapper">
       <MetaData title="Admin" />
       <Particle />
-      <h1 className="admin-header">
-        <strong className="purple">{`${message}`} Boss</strong>
-      </h1>
-      <Row
-        style={{ justifyContent: "center", paddingBottom: "50px" }}
-        className="admin-bars"
-      >
-        <Col xs={4} md={2} className="tech-icons">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="tooltip-landmark">Certificates</Tooltip>}
-          >
-            <Link to="/admin/certificates">
-              <FaCertificate />
-            </Link>
-          </OverlayTrigger>
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="tooltip-blog">Blogs</Tooltip>}
-          >
-            <Link to="/admin/blogs">
-              <FaBlog />
-            </Link>
-          </OverlayTrigger>
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="tooltip-projects">Projects</Tooltip>}
-          >
-            <Link to="/admin/projects">
-              <FaPortrait />
-            </Link>
-          </OverlayTrigger>
-        </Col>
-        <Col xs={4} md={2} className="tech-icons">
-          <OverlayTrigger
-            placement="bottom"
-            overlay={<Tooltip id="tooltip-team-access">Team Access</Tooltip>}
-          >
-            <Link to="/admin/team-access">
-              <AiOutlineTeam />
-            </Link>
-          </OverlayTrigger>
-        </Col>
-      </Row>
 
-      <Row
-        style={{ justifyContent: "center", paddingBottom: "50px" }}
-        className="extras-wrapper"
-      >
-        {/* Column for Tags */}
-        <Col xs={12} md={6} className="tags-column">
-          <h3>Add Tags</h3>
-          <Form onSubmit={handleTagSubmit}>
-            <Form.Group controlId="tagName">
-              <Form.Label>Tag Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter tag name"
-                value={tagName}
-                onChange={(e) => setTagName(e.target.value)}
-                required
-              />
-            </Form.Group>
-            <Button type="submit">Add Tag</Button>
-          </Form>
-        </Col>
+      <div className="admin-content">
+        <h1 className="admin-header">
+          <strong className="purple">{`${message}`} Boss</strong>
+        </h1>
+        <Row
+          style={{ justifyContent: "center", paddingBottom: "50px" }}
+          className="admin-bars"
+        >
+          <Col xs={4} md={2} className="tech-icons">
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip id="tooltip-landmark">Certificates</Tooltip>}
+            >
+              <Link to="/admin/certificates">
+                <FaCertificate />
+              </Link>
+            </OverlayTrigger>
+          </Col>
+          <Col xs={4} md={2} className="tech-icons">
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip id="tooltip-blog">Blogs</Tooltip>}
+            >
+              <Link to="/admin/blogs">
+                <FaBlog />
+              </Link>
+            </OverlayTrigger>
+          </Col>
+          <Col xs={4} md={2} className="tech-icons">
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip id="tooltip-projects">Projects</Tooltip>}
+            >
+              <Link to="/admin/projects">
+                <FaPortrait />
+              </Link>
+            </OverlayTrigger>
+          </Col>
+          <Col xs={4} md={2} className="tech-icons">
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip id="tooltip-team-access">Team Access</Tooltip>}
+            >
+              <Link to="/admin/team-access">
+                <AiOutlineTeam />
+              </Link>
+            </OverlayTrigger>
+          </Col>
+        </Row>
 
-        {/* Column for Resume Link */}
-        <Col xs={12} md={6} className="resume-column">
-          <h3>Add Resume</h3>
-          <Form onSubmit={handleResumeSubmit}>
-            <Form.Group controlId="resumeLink">
-              <Form.Label>Resume Link</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter resume link"
-                ref={resumeRef}
-                required
-              />
-            </Form.Group>
-            <Button type="submit">Add Resume</Button>
-          </Form>
-        </Col>
-      </Row>
+        <Row
+          style={{ justifyContent: "center", paddingBottom: "50px" }}
+          className="extras-wrapper"
+        >
+          {/* Column for Tags */}
+          <Col xs={12} md={6} className="tags-column">
+            <h3>Add Tags</h3>
+            <Form onSubmit={handleTagSubmit}>
+              <Form.Group controlId="tagName">
+                <Form.Label>Tag Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter tag name"
+                  value={tagName}
+                  onChange={(e) => setTagName(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              <Button type="submit">Add Tag</Button>
+            </Form>
+          </Col>
+
+          {/* Column for Resume Link */}
+          <Col xs={12} md={6} className="resume-column">
+            <h3>Add Resume</h3>
+            <Form onSubmit={handleResumeSubmit}>
+              <Form.Group controlId="resumeLink">
+                <Form.Label>Resume Link</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter resume link"
+                  ref={resumeRef}
+                  required
+                />
+              </Form.Group>
+              <Button type="submit">Add Resume</Button>
+            </Form>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

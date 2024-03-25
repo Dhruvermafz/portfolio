@@ -51,7 +51,6 @@ function Home() {
               <i>
                 <b className="purple"> React.js and Next.js</b>
               </i>
-              <h4 className="main-name">My latest plan?</h4>
               <p>
                 I'm seeking Front-end/FullStack development roles as of now{" "}
                 <mark>{`${new Date().getFullYear()}`}</mark>, but not limited to

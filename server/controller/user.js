@@ -15,13 +15,7 @@ exports.fetchProfile = function (req, res, next) {
   // Return profile info
   const user = {
     email: req.user.email,
-    firstName: req.user.firstName,
-    lastName: req.user.lastName,
-    birthday: req.user.birthday,
-    sex: req.user.sex,
-    phone: req.user.phone,
-    address: req.user.address,
-    occupation: req.user.occupation,
+    username: req.user.username,
     description: req.user.description,
   };
   res.send({
@@ -40,22 +34,15 @@ exports.updateProfile = function (req, res, next) {
   // Require auth
 
   // Get new profile info (user input)
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
-  const birthday = req.body.birthday;
-  const sex = req.body.sex;
-  const phone = req.body.phone;
-  const address = req.body.address;
-  const occupation = req.body.occupation;
+  const username = req.body.username;
   const description = req.body.description;
 
   // Get user
   const user = req.user;
 
-  // Update author name for post (updateMany(): MongoDB will update all documents that match criteria)
   Post.updateMany(
     { authorId: user._id },
-    { $set: { authorName: firstName + " " + lastName } },
+    { $set: { authorName: username } },
     function (err) {
       if (err) {
         next(err);
@@ -63,10 +50,9 @@ exports.updateProfile = function (req, res, next) {
     }
   );
 
-  // Update author name for comment (updateMany(): MongoDB will update all documents that match criteria)
   Comment.updateMany(
     { authorId: user._id },
-    { $set: { authorName: firstName + " " + lastName } },
+    { $set: { authorName: username } },
     function (err) {
       if (err) {
         next(err);
@@ -79,13 +65,7 @@ exports.updateProfile = function (req, res, next) {
     user._id,
     {
       $set: {
-        firstName: firstName,
-        lastName: lastName,
-        birthday: birthday,
-        sex: sex,
-        phone: phone,
-        address: address,
-        occupation: occupation,
+        username: username,
         description: description,
       },
     },
@@ -119,7 +99,7 @@ exports.resetPassword = function (req, res, next) {
   const newPassword = req.body.newPassword;
   const user = req.user;
 
-  // Compare passwords - Does the user provide correct old password?
+  // Compare passwords
   user.comparePassword(oldPassword, function (err, isMatch) {
     if (err) {
       return next(err);
@@ -146,7 +126,6 @@ exports.resetPassword = function (req, res, next) {
         return next(err);
       }
 
-      // Respond user request indicating that the password was updated successfully
       res.json({ message: "You have successfully updated your password." });
     });
   });

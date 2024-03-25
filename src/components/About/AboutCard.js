@@ -15,17 +15,11 @@ function AboutCard() {
             <span className="purple">
               The Technological Institute of Textile & Sciences, Bhiwani
             </span>
-            <br />
-            Apart from coding, some other activities that I love to do!
+            <br />I am passionate about{" "}
+            <span className="purple">Software Development</span> and{" "}
+            <span className="purple">Designing the UI/UX.</span>
           </p>
-          <ul>
-            <li className="about-activity">
-              <ImBooks /> Reading Books
-            </li>
-            <li className="about-activity">
-              <SiCinema4D /> Watching Movies
-            </li>
-          </ul>
+
           <div
             style={{
               borderLeft: "4px solid rgb(155, 126, 172)",

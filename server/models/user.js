@@ -6,14 +6,7 @@ const bcrypt = require("bcrypt-nodejs");
 const userSchema = new Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
-  firstName: String,
-  lastName: String,
-
-  birthday: { type: String, default: "" },
-  sex: { type: String, default: "" }, // secrecy/male/female
-  phone: { type: String, default: "" },
-  address: { type: String, default: "" },
-  occupation: { type: String, default: "" },
+  username: String,
   description: { type: String, default: "" },
 });
 

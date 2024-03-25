@@ -1,9 +1,6 @@
 import React from "react";
-import BlogBreadcrumbs from "./BlogBreadcrumps";
-import BlogCategories from "./BlogCategories";
-import BlogTags from "./BlogTags";
-import BlogTitle from "./BlogTitle";
-import BlogContent from "./BlogContent";
+
+import BlogHeader from "./BlogHeader";
 
 const BlogPost = () => {
   return (
@@ -13,13 +10,8 @@ const BlogPost = () => {
           <div class="row">
             <div class="col-xl-1"></div>
             <div class="col-xl-10 col-lg-12">
-              <BlogBreadcrumbs />
-
-              <BlogTitle />
-              <div class="row mt-50">
-                <BlogContent />
-                <BlogCategories />
-              </div>
+              <BlogHeader />
+              <div class="row mt-50"></div>
             </div>
           </div>
         </div>

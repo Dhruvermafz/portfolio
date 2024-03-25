@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Navigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Navigate, Link } from "react-router-dom";
 import { login, resetState } from "../../api/auth/authSlice";
 import { BsArrowRight } from "react-icons/bs";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
 import "../../styles/auth.css";
+
 function LoginPage() {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
@@ -31,9 +32,9 @@ function LoginPage() {
   return (
     <main className="main">
       <div className="cover-home3">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-10 col-lg-12 m-auto">
+        <Container>
+          <Row className="justify-content-center">
+            <Col xl={10} lg={12}>
               <div className="text-center mt-50 pb-50">
                 <h2 className="color-linear d-inline-block">Welcome back!</h2>
               </div>
@@ -77,20 +78,10 @@ function LoginPage() {
                     </div>
                   </Form>
                 </div>
-                <div className="box-line">
-                  <span className="bg-gray-900">
-                    Or, sign in with your email
-                  </span>
-                </div>
-                <div className="box-login-gmail bg-gray-850 border-gray-800 hover-up">
-                  <a className="btn btn-login-gmail color-gray-500" href="#">
-                    Sign in with Google
-                  </a>
-                </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </Col>
+          </Row>
+        </Container>
       </div>
     </main>
   );

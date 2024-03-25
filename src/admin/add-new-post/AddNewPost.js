@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Form,
@@ -12,26 +12,34 @@ import MetaData from "../../components/MetaData";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import {
-  getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
+  getDownloadURL,
 } from "firebase/storage";
-
 import { app } from "../../firebase";
 import Pre from "../../components/Pre";
 import "../../styles/addblog.css";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../../config";
-
-export default function CreatePost() {
+import blogService from "../../api/blogs/blogService";
+import { checkAuth } from "../../Lib/CheckAuth";
+export default function AddBlogPost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check authentication status when component mounts
+    const user = checkAuth();
+    if (!user) {
+      // Redirect to login page or handle unauthorized access
+      navigate("/login");
+    }
+  }, []);
 
   const handleUploadImage = async () => {
     try {
@@ -56,9 +64,9 @@ export default function CreatePost() {
           setImageUploadProgress(null);
         },
         () => {
+          setImageUploadProgress(null);
+          setImageUploadError(null);
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setImageUploadProgress(null);
-            setImageUploadError(null);
             setFormData({ ...formData, image: downloadURL });
           });
         }
@@ -73,23 +81,15 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${API_BASE_URL}/api/post/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
+      const res = await blogService.createBlog(formData);
       if (!res.ok) {
+        const data = await res.json();
         setPublishError(data.message);
         return;
       }
-
-      if (res.ok) {
-        setPublishError(null);
-        navigate(`/blog/${data.slug}`);
-      }
+      setPublishError(null);
+      const data = await res.json();
+      navigate(`/blog/${data.slug}`);
     } catch (error) {
       setPublishError("Something went wrong");
     }
@@ -136,9 +136,9 @@ export default function CreatePost() {
                   <Button
                     type="button"
                     onClick={handleUploadImage}
-                    disabled={imageUploadProgress}
+                    disabled={imageUploadProgress !== null}
                   >
-                    {imageUploadProgress ? (
+                    {imageUploadProgress !== null ? (
                       <div className="w-16 h-16">
                         <Pre />
                       </div>
@@ -164,7 +164,9 @@ export default function CreatePost() {
                     setFormData({ ...formData, content: value })
                   }
                 />
-                <Button type="submit">Publish</Button>
+                <Button type="submit" disabled={imageUploadProgress !== null}>
+                  Publish
+                </Button>
                 {publishError && (
                   <Alert variant="danger" className="mt-5">
                     {publishError}

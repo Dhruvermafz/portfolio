@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Spinner, Button, Form } from "react-bootstrap";
-import PostCard from "./PostCard";
-import ListLayout from "./ListLayout";
+
 import Particle from "../Particle";
 import blogs from "./blogs.json";
 import MetaData from "../MetaData";
 import { Tags } from "../Tags";
+import BlogHeader from "./BlogHeader";
+import blogService from "../../api/blogs/blogService";
 
 const BlogPage = () => {
   const [sidebarData, setSidebarData] = useState({
@@ -39,16 +40,15 @@ const BlogPage = () => {
 
   const fetchPosts = async () => {
     setLoading(true);
-    const searchQuery = new URLSearchParams(sidebarData).toString();
-    const res = await fetch(`/api/post/getposts?${searchQuery}`);
-    if (!res.ok) {
+    try {
+      const data = await blogService.getBlogs();
+      setPosts(data.posts);
+      setShowMore(data.posts.length === 9);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    } finally {
       setLoading(false);
-      return;
     }
-    const data = await res.json();
-    setPosts(data.posts);
-    setLoading(false);
-    setShowMore(data.posts.length === 9);
   };
 
   const handleChange = (e) => {
@@ -63,18 +63,18 @@ const BlogPage = () => {
   };
 
   const handleShowMore = async () => {
-    const numberOfPosts = posts.length;
-    const startIndex = numberOfPosts;
-    const urlParams = new URLSearchParams(location.search);
-    urlParams.set("startIndex", startIndex);
-    const searchQuery = urlParams.toString();
-    const res = await fetch(`/api/post/getposts?${searchQuery}`);
-    if (!res.ok) {
-      return;
+    setLoading(true);
+    try {
+      const numberOfPosts = posts.length;
+      const startIndex = numberOfPosts;
+      const data = await blogService.getBlogs(startIndex);
+      setPosts([...posts, ...data.posts]);
+      setShowMore(data.posts.length === 9);
+    } catch (error) {
+      console.error("Error fetching more posts:", error);
+    } finally {
+      setLoading(false);
     }
-    const data = await res.json();
-    setPosts([...posts, ...data.posts]);
-    setShowMore(data.posts.length === 9);
   };
 
   return (
@@ -98,12 +98,19 @@ const BlogPage = () => {
         </Form>
         <hr /> {/* Add a horizontal line */}
       </div>
-      <div className="row">
-        {loading ? (
-          <Spinner />
-        ) : (
-          posts.map((post) => <PostCard key={post.id} post={post} />)
-        )}
+
+      <div className="px-0.5 md:px-7 pb-14 pt-6 mx-auto">
+        <div className="flex flex-wrap">
+          {posts &&
+            posts.map((post) => (
+              <BlogHeader
+                key={post.Id}
+                data={post}
+                content={post.content}
+                readTime={post.readTime.text}
+              />
+            ))}
+        </div>
       </div>
       {showMore && (
         <div className="row">

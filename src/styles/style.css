@@ -323,6 +323,7 @@ button:focus {
   position: relative;
   padding-bottom: 70px !important;
   padding-top: 70px !important;
+  margin-top: -9%;
 }
 
 .home-about-description {
@@ -552,6 +553,7 @@ button:focus {
   padding-bottom: 30px !important;
   background-image: var(--section-background-color) !important;
   color: white !important;
+  margin-top: -10%;
 }
 
 .tech-icons {

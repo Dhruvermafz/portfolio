@@ -49,9 +49,9 @@ app.use("/api", projectRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
 // Error handling middleware
-// app.use((req, res, next) => {
-//   next(createError(404));
-// });
+app.use((req, res, next) => {
+  next(createError(404));
+});
 
 // Global error handler
 app.use((err, req, res, next) => {
